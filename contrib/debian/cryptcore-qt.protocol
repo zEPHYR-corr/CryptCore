@@ -1,0 +1,11 @@
+[Protocol]
+exec=cryptcore-qt '%u'
+protocol=cryptcore
+input=none
+output=none
+helper=true
+listing=
+reading=false
+writing=false
+makedir=false
+deleting=false

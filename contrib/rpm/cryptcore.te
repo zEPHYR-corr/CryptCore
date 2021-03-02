@@ -1,0 +1,81 @@
+policy_module(cryptcore, 1.100.1)
+
+########################################
+#
+# Declarations
+#
+
+type cryptcore_t;
+type cryptcore_exec_t;
+init_daemon_domain(cryptcore_t, cryptcore_exec_t)
+
+permissive cryptcore_t;
+
+type cryptcore_initrc_exec_t;
+init_script_file(cryptcore_initrc_exec_t)
+
+type cryptcore_conf_t;
+files_type(cryptcore_conf_t)
+
+type cryptcore_var_lib_t;
+files_type(cryptcore_var_lib_t)
+
+type cryptcore_var_run_t;
+files_type(cryptcore_var_run_t)
+
+type cryptcore_port_t;
+corenet_port(cryptcore_port_t)
+
+########################################
+#
+# cryptcore local policy
+#
+allow cryptcore_t self:process { fork };
+
+allow cryptcore_t self:fifo_file rw_fifo_file_perms;
+allow cryptcore_t self:unix_stream_socket create_stream_socket_perms;
+
+manage_dirs_pattern(cryptcore_t, cryptcore_conf_t, cryptcore_conf_t)
+manage_files_pattern(cryptcore_t, cryptcore_conf_t, cryptcore_conf_t)
+
+manage_dirs_pattern(cryptcore_t, cryptcore_var_lib_t, cryptcore_var_lib_t)
+manage_files_pattern(cryptcore_t, cryptcore_var_lib_t, cryptcore_var_lib_t)
+files_var_lib_filetrans(cryptcore_t, cryptcore_var_lib_t, { dir file })
+
+manage_dirs_pattern(cryptcore_t, cryptcore_var_run_t, cryptcore_var_run_t)
+manage_files_pattern(cryptcore_t, cryptcore_var_run_t, cryptcore_var_run_t)
+
+sysnet_dns_name_resolve(cryptcore_t)
+corenet_all_recvfrom_unlabeled(cryptcore_t)
+
+allow cryptcore_t self:tcp_socket create_stream_socket_perms;
+corenet_tcp_sendrecv_generic_if(cryptcore_t)
+corenet_tcp_sendrecv_generic_node(cryptcore_t)
+corenet_tcp_sendrecv_all_ports(cryptcore_t)
+corenet_tcp_bind_generic_node(cryptcore_t)
+
+gen_require(`
+    type cryptcore_port_t;
+')
+allow cryptcore_t cryptcore_port_t:tcp_socket name_bind;
+
+gen_require(`
+    type cryptcore_port_t;
+')
+allow cryptcore_t cryptcore_port_t:tcp_socket name_connect;
+
+domain_use_interactive_fds(cryptcore_t)
+
+files_read_etc_files(cryptcore_t)
+
+miscfiles_read_localization(cryptcore_t)
+
+sysnet_dns_name_resolve(cryptcore_t)
+
+allow cryptcore_t cryptcore_exec_t:file execute_no_trans;
+allow cryptcore_t self:process setsched;
+corecmd_exec_ls(cryptcore_t)
+corenet_tcp_connect_http_port(cryptcore_t)
+dev_read_urand(cryptcore_t)
+fs_getattr_xattr_fs(cryptcore_t)
+kernel_read_system_state(cryptcore_t)

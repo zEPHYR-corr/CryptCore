@@ -1,0 +1,6 @@
+usr/local/bin/cryptcore-qt usr/bin
+share/pixmaps/cryptcore32.xpm usr/share/pixmaps
+share/pixmaps/cryptcore16.xpm usr/share/pixmaps
+share/pixmaps/cryptcore128.png usr/share/pixmaps
+debian/cryptcore-qt.desktop usr/share/applications
+debian/cryptcore-qt.protocol usr/share/kde4/services/

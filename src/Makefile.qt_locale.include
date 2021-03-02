@@ -1,0 +1,14 @@
+QT_TS = \
+  qt/locale/cryptcore_de.ts \
+  qt/locale/cryptcore_en.ts \
+  qt/locale/cryptcore_en_US.ts \
+  qt/locale/cryptcore_es.ts \
+  qt/locale/cryptcore_fr_FR.ts \
+  qt/locale/cryptcore_hr_HR.ts \
+  qt/locale/cryptcore_it.ts \
+  qt/locale/cryptcore_ko_KR.ts \
+  qt/locale/cryptcore_nl.ts \
+  qt/locale/cryptcore_pl.ts \
+  qt/locale/cryptcore_ru.ts \
+  qt/locale/cryptcore_tr.ts \
+  qt/locale/cryptcore_zh_CN.ts

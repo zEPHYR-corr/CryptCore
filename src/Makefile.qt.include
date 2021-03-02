@@ -1,0 +1,725 @@
+# Copyright (c) 2013-2016 The Bitcoin Core developers
+# Distributed under the MIT software license, see the accompanying
+# file COPYING or http://www.opensource.org/licenses/mit-license.php.
+
+bin_PROGRAMS += qt/cryptcore-qt
+EXTRA_LIBRARIES += qt/libbitcoinqt.a
+
+# cryptcore qt core #
+include Makefile.qt_locale.include
+
+QT_FORMS_UI = \
+  qt/forms/addressbookpage.ui \
+  qt/forms/askpassphrasedialog.ui \
+  qt/forms/coincontroldialog.ui \
+  qt/forms/editaddressdialog.ui \
+  qt/forms/helpmessagedialog.ui \
+  qt/forms/intro.ui \
+  qt/forms/openuridialog.ui \
+  qt/forms/optionsdialog.ui \
+  qt/forms/rpcconsole.ui \
+  qt/cryptcore/forms/loadingdialog.ui \
+  qt/cryptcore/forms/snackbar.ui \
+  qt/cryptcore/forms/navmenuwidget.ui \
+  qt/cryptcore/forms/lockunlock.ui \
+  qt/cryptcore/forms/expandablebutton.ui \
+  qt/cryptcore/forms/receivedialog.ui \
+  qt/cryptcore/forms/topbar.ui \
+  qt/cryptcore/forms/txrow.ui \
+  qt/cryptcore/forms/dashboardwidget.ui \
+  qt/cryptcore/forms/addresslabelrow.ui \
+  qt/cryptcore/forms/contactdropdownrow.ui \
+  qt/cryptcore/forms/mninfodialog.ui \
+  qt/cryptcore/forms/optionbutton.ui \
+  qt/cryptcore/forms/masternodewizarddialog.ui \
+  qt/cryptcore/forms/mnrow.ui \
+  qt/cryptcore/forms/masternodeswidget.ui \
+  qt/cryptcore/forms/myaddressrow.ui \
+  qt/cryptcore/forms/csrow.ui \
+  qt/cryptcore/forms/sendchangeaddressdialog.ui \
+  qt/cryptcore/forms/sendconfirmdialog.ui \
+  qt/cryptcore/forms/sendcustomfeedialog.ui \
+  qt/cryptcore/forms/sendchangeaddressdialog.ui \
+  qt/cryptcore/forms/sendmultirow.ui \
+  qt/cryptcore/forms/send.ui \
+  qt/cryptcore/forms/addnewaddressdialog.ui \
+  qt/cryptcore/forms/addnewcontactdialog.ui \
+  qt/cryptcore/forms/requestdialog.ui \
+  qt/cryptcore/forms/receivewidget.ui \
+  qt/cryptcore/forms/tooltipmenu.ui \
+  qt/cryptcore/forms/addresseswidget.ui \
+  qt/cryptcore/forms/defaultdialog.ui \
+  qt/cryptcore/forms/coldstakingwidget.ui \
+  qt/cryptcore/settings/forms/settingsbackupwallet.ui \
+  qt/cryptcore/settings/forms/settingsexportcsv.ui \
+  qt/cryptcore/settings/forms/settingsbittoolwidget.ui \
+  qt/cryptcore/settings/forms/settingsconsolewidget.ui \
+  qt/cryptcore/settings/forms/settingsdisplayoptionswidget.ui \
+  qt/cryptcore/settings/forms/settingsfaqwidget.ui \
+  qt/cryptcore/settings/forms/settingsinformationwidget.ui \
+  qt/cryptcore/settings/forms/settingsmainoptionswidget.ui \
+  qt/cryptcore/settings/forms/settingsmultisenddialog.ui \
+  qt/cryptcore/settings/forms/settingsmultisendwidget.ui \
+  qt/cryptcore/settings/forms/settingssignmessagewidgets.ui \
+  qt/cryptcore/settings/forms/settingswalletoptionswidget.ui \
+  qt/cryptcore/settings/forms/settingswalletrepairwidget.ui \
+  qt/cryptcore/settings/forms/settingswidget.ui \
+  qt/cryptcore/forms/welcomecontentwidget.ui \
+  qt/cryptcore/forms/splash.ui
+
+QT_MOC_CPP = \
+  qt/moc_addressbookpage.cpp \
+  qt/moc_addresstablemodel.cpp \
+  qt/moc_askpassphrasedialog.cpp \
+  qt/moc_bantablemodel.cpp \
+  qt/moc_bitcoinaddressvalidator.cpp \
+  qt/cryptcore/moc_cryptcoregui.cpp \
+  qt/moc_bitcoinunits.cpp \
+  qt/moc_clientmodel.cpp \
+  qt/moc_coincontroldialog.cpp \
+  qt/moc_coincontroltreewidget.cpp \
+  qt/moc_csvmodelwriter.cpp \
+  qt/moc_editaddressdialog.cpp \
+  qt/moc_guiutil.cpp \
+  qt/moc_intro.cpp \
+  qt/moc_macdockiconhandler.cpp \
+  qt/moc_macnotificationhandler.cpp \
+  qt/moc_notificator.cpp \
+  qt/moc_openuridialog.cpp \
+  qt/moc_optionsdialog.cpp \
+  qt/moc_optionsmodel.cpp \
+  qt/moc_peertablemodel.cpp \
+  qt/moc_paymentserver.cpp \
+  qt/moc_qvalidatedlineedit.cpp \
+  qt/moc_qvaluecombobox.cpp \
+  qt/moc_recentrequeststablemodel.cpp \
+  qt/moc_rpcconsole.cpp \
+  qt/moc_splashscreen.cpp \
+  qt/moc_trafficgraphwidget.cpp \
+  qt/moc_transactiondesc.cpp \
+  qt/moc_transactionfilterproxy.cpp \
+  qt/moc_transactiontablemodel.cpp \
+  qt/moc_utilitydialog.cpp \
+  qt/moc_walletmodel.cpp \
+  qt/cryptcore/moc_loadingdialog.cpp \
+  qt/cryptcore/moc_pwidget.cpp \
+  qt/cryptcore/moc_focuseddialog.cpp \
+  qt/cryptcore/moc_snackbar.cpp \
+  qt/cryptcore/moc_navmenuwidget.cpp \
+  qt/cryptcore/moc_lockunlock.cpp \
+  qt/cryptcore/moc_expandablebutton.cpp \
+  qt/cryptcore/moc_furabstractlistitemdelegate.cpp \
+  qt/cryptcore/moc_receivedialog.cpp \
+  qt/cryptcore/moc_pfborderimage.cpp \
+  qt/cryptcore/moc_topbar.cpp \
+  qt/cryptcore/moc_txrow.cpp \
+  qt/cryptcore/moc_dashboardwidget.cpp \
+  qt/cryptcore/moc_addresslabelrow.cpp \
+  qt/cryptcore/moc_contactdropdownrow.cpp \
+  qt/cryptcore/moc_mninfodialog.cpp \
+  qt/cryptcore/moc_optionbutton.cpp \
+  qt/cryptcore/moc_coldstakingmodel.cpp \
+  qt/cryptcore/moc_mnmodel.cpp \
+  qt/cryptcore/moc_masternodewizarddialog.cpp \
+  qt/cryptcore/moc_mnrow.cpp \
+  qt/cryptcore/moc_masternodeswidget.cpp \
+  qt/cryptcore/moc_myaddressrow.cpp \
+  qt/cryptcore/moc_csrow.cpp \
+  qt/cryptcore/moc_contactsdropdown.cpp \
+  qt/cryptcore/moc_sendchangeaddressdialog.cpp \
+  qt/cryptcore/moc_sendconfirmdialog.cpp \
+  qt/cryptcore/moc_sendcustomfeedialog.cpp \
+  qt/cryptcore/moc_sendchangeaddressdialog.cpp \
+  qt/cryptcore/moc_sendmultirow.cpp \
+  qt/cryptcore/moc_send.cpp \
+  qt/cryptcore/moc_addnewaddressdialog.cpp \
+  qt/cryptcore/moc_addnewcontactdialog.cpp \
+  qt/cryptcore/moc_requestdialog.cpp \
+  qt/cryptcore/moc_receivewidget.cpp \
+  qt/cryptcore/moc_tooltipmenu.cpp \
+  qt/cryptcore/moc_addresseswidget.cpp \
+  qt/cryptcore/moc_defaultdialog.cpp \
+  qt/cryptcore/moc_coldstakingwidget.cpp \
+  qt/cryptcore/settings/moc_settingsbackupwallet.cpp \
+  qt/cryptcore/settings/moc_settingsexportcsv.cpp \
+  qt/cryptcore/settings/moc_settingsbittoolwidget.cpp \
+  qt/cryptcore/settings/moc_settingsconsolewidget.cpp \
+  qt/cryptcore/settings/moc_settingsdisplayoptionswidget.cpp \
+  qt/cryptcore/settings/moc_settingsfaqwidget.cpp \
+  qt/cryptcore/settings/moc_settingsinformationwidget.cpp \
+  qt/cryptcore/settings/moc_settingsmainoptionswidget.cpp \
+  qt/cryptcore/settings/moc_settingsmultisenddialog.cpp \
+  qt/cryptcore/settings/moc_settingsmultisendwidget.cpp \
+  qt/cryptcore/settings/moc_settingssignmessagewidgets.cpp \
+  qt/cryptcore/settings/moc_settingswalletoptionswidget.cpp \
+  qt/cryptcore/settings/moc_settingswalletrepairwidget.cpp \
+  qt/cryptcore/settings/moc_settingswidget.cpp \
+  qt/cryptcore/moc_welcomecontentwidget.cpp \
+  qt/cryptcore/moc_splash.cpp
+
+BITCOIN_MM = \
+  qt/macdockiconhandler.mm \
+  qt/macnotificationhandler.mm
+
+QT_MOC = \
+  qt/cryptcore.moc \
+  qt/intro.moc \
+  qt/rpcconsole.moc \
+  qt/cryptcore/settings/moc_settingsconsolewidget.cpp
+
+QT_QRC_CPP = qt/qrc_cryptcore.cpp
+if TARGET_WINDOWS
+QT_QRC = qt/cryptcore.qrc
+else
+QT_QRC = qt/cryptcore1.qrc
+endif
+QT_QRC_LOCALE_CPP = qt/qrc_cryptcore_locale.cpp
+QT_QRC_LOCALE = qt/cryptcore_locale.qrc
+
+PROTOBUF_CC = qt/paymentrequest.pb.cc
+PROTOBUF_H = qt/paymentrequest.pb.h
+PROTOBUF_PROTO = qt/paymentrequest.proto
+
+BITCOIN_QT_H = \
+  qt/addressbookpage.h \
+  qt/addresstablemodel.h \
+  qt/askpassphrasedialog.h \
+  qt/bantablemodel.h \
+  qt/bitcoinaddressvalidator.h \
+  qt/cryptcore/cryptcoregui.h \
+  qt/bitcoinunits.h \
+  qt/clientmodel.h \
+  qt/coincontroldialog.h \
+  qt/coincontroltreewidget.h \
+  qt/csvmodelwriter.h \
+  qt/editaddressdialog.h \
+  qt/guiconstants.h \
+  qt/guiutil.h \
+  qt/intro.h \
+  qt/macdockiconhandler.h \
+  qt/macnotificationhandler.h \
+  qt/networkstyle.h \
+  qt/notificator.h \
+  qt/openuridialog.h \
+  qt/optionsdialog.h \
+  qt/optionsmodel.h \
+  qt/paymentrequestplus.h \
+  qt/paymentserver.h \
+  qt/peertablemodel.h \
+  qt/platformstyle.h \
+  qt/qvalidatedlineedit.h \
+  qt/qvaluecombobox.h \
+  qt/recentrequeststablemodel.h \
+  qt/rpcconsole.h \
+  qt/splashscreen.h \
+  qt/trafficgraphwidget.h \
+  qt/transactiondesc.h \
+  qt/transactionfilterproxy.h \
+  qt/transactionrecord.h \
+  qt/transactiontablemodel.h \
+  qt/utilitydialog.h \
+  qt/walletmodel.h \
+  qt/walletmodeltransaction.h \
+  qt/cryptcore/prunnable.h \
+  qt/cryptcore/pfborderimage.h \
+  qt/cryptcore/loadingdialog.h \
+  qt/winshutdownmonitor.h \
+  qt/cryptcore/pwidget.h \
+  qt/cryptcore/focuseddialog.h \
+  qt/cryptcore/guitransactionsutils.h \
+  qt/cryptcore/snackbar.h \
+  qt/cryptcore/navmenuwidget.h \
+  qt/cryptcore/lockunlock.h \
+  qt/cryptcore/receivedialog.h \
+  qt/cryptcore/furlistrow.h \
+  qt/cryptcore/furabstractlistitemdelegate.h \
+  qt/cryptcore/txviewholder.h \
+  qt/cryptcore/qtutils.h \
+  qt/cryptcore/expandablebutton.h \
+  qt/cryptcore/topbar.h \
+  qt/cryptcore/txrow.h \
+  qt/cryptcore/addressholder.h \
+  qt/cryptcore/addressfilterproxymodel.h \
+  qt/cryptcore/dashboardwidget.h \
+  qt/cryptcore/addresslabelrow.h \
+  qt/cryptcore/contactdropdownrow.h \
+  qt/cryptcore/mninfodialog.h \
+  qt/cryptcore/optionbutton.h \
+  qt/cryptcore/coldstakingmodel.h \
+  qt/cryptcore/mnmodel.h \
+  qt/cryptcore/masternodewizarddialog.h \
+  qt/cryptcore/mnrow.h \
+  qt/cryptcore/masternodeswidget.h \
+  qt/cryptcore/myaddressrow.h \
+  qt/cryptcore/csrow.h \
+  qt/cryptcore/contactsdropdown.h \
+  qt/cryptcore/sendchangeaddressdialog.h \
+  qt/cryptcore/sendconfirmdialog.h \
+  qt/cryptcore/sendcustomfeedialog.h \
+  qt/cryptcore/sendchangeaddressdialog.h \
+  qt/cryptcore/sendmultirow.h \
+  qt/cryptcore/send.h \
+  qt/cryptcore/addnewaddressdialog.h \
+  qt/cryptcore/addnewcontactdialog.h \
+  qt/cryptcore/requestdialog.h \
+  qt/cryptcore/receivewidget.h \
+  qt/cryptcore/tooltipmenu.h \
+  qt/cryptcore/addresseswidget.h \
+  qt/cryptcore/defaultdialog.h \
+  qt/cryptcore/coldstakingwidget.h \
+  qt/cryptcore/settings/settingsbackupwallet.h \
+  qt/cryptcore/settings/settingsexportcsv.h \
+  qt/cryptcore/settings/settingsbittoolwidget.h \
+  qt/cryptcore/settings/settingsconsolewidget.h \
+  qt/cryptcore/settings/settingsdisplayoptionswidget.h \
+  qt/cryptcore/settings/settingsfaqwidget.h \
+  qt/cryptcore/settings/settingsinformationwidget.h \
+  qt/cryptcore/settings/settingsmainoptionswidget.h \
+  qt/cryptcore/settings/settingsmultisenddialog.h \
+  qt/cryptcore/settings/settingsmultisendwidget.h \
+  qt/cryptcore/settings/settingssignmessagewidgets.h \
+  qt/cryptcore/settings/settingswalletoptionswidget.h \
+  qt/cryptcore/settings/settingswalletrepairwidget.h \
+  qt/cryptcore/settings/settingswidget.h \
+  qt/cryptcore/welcomecontentwidget.h \
+  qt/cryptcore/splash.h
+
+RES_ICONS = \
+  qt/res/icons/bitcoin.ico \
+  qt/res/icons/bitcoin.png \
+  qt/res/icons/lock_closed.png \
+  qt/res/icons/lock_open.png \
+  qt/res/icons/ic-transaction-received.png \
+  qt/res/icons/ic-transaction-mint.png \
+  qt/res/icons/ic-transaction-sent.png \
+  qt/res/icons/ic-transaction-staked.png \
+  qt/cryptcore/res/img/bg-dashboard-banner.png \
+  qt/cryptcore/res/img/bg-multi-number-dark.png \
+  qt/cryptcore/res/img/ic-check-locked.png \
+  qt/cryptcore/res/img/ic-nav-address.png \
+  qt/cryptcore/res/img/ic-update.png \
+  qt/cryptcore/res/img/bg-multi-number.png \
+  qt/cryptcore/res/img/ic-check-mint-off.png \
+  qt/cryptcore/res/img/ic-nav-cold-staking.png \
+  qt/cryptcore/res/img/ic-nav-cold-staking-active.png \
+  qt/cryptcore/res/img/ic-nav-dashboard-active.png \
+  qt/cryptcore/res/img/ic-wallet-status-locked.png \
+  qt/cryptcore/res/img/bg-splash.png \
+  qt/cryptcore/res/img/bg-splash.png \
+  qt/cryptcore/res/img/ic-check-mint.png \
+  qt/cryptcore/res/img/ic-nav-dashboard-hover.png \
+  qt/cryptcore/res/img/ic-wallet-status-staking.png \
+  qt/cryptcore/res/img/ic-check-peers-off.png \
+  qt/cryptcore/res/img/ic-nav-dashboard.png \
+  qt/cryptcore/res/img/ic-wallet-status-unlocked.png \
+  qt/cryptcore/res/img/ic-check-peers.png \
+  qt/cryptcore/res/img/ic-nav-master-active.png \
+  qt/cryptcore/res/img/ic-watch-password-white.png \
+  qt/cryptcore/res/img/bg-welcome-container.jpg \
+  qt/cryptcore/res/img/bg-welcome-container.png \
+  qt/cryptcore/res/img/bg-welcome-container.png \
+  qt/cryptcore/res/img/bg-welcome-container@2x.png \
+  qt/cryptcore/res/img/bg-welcome-container@3x.png \
+  qt/cryptcore/res/img/ic-check-staking-off.png \
+  qt/cryptcore/res/img/ic-nav-master-hover.png \
+  qt/cryptcore/res/img/ic-watch-password.png \
+  qt/cryptcore/res/img/bg-welcome.jpg \
+  qt/cryptcore/res/img/bg-welcome.png \
+  qt/cryptcore/res/img/bg-welcome@2x.jpg \
+  qt/cryptcore/res/img/bg-welcome@3x.jpg \
+  qt/cryptcore/res/img/bg-welcome.png \
+  qt/cryptcore/res/img/ic-check-staking.png \
+  qt/cryptcore/res/img/ic-nav-master.png \
+  qt/cryptcore/res/img/img-dashboard-banner.jpg \
+  qt/cryptcore/res/img/btn-radio-active.png \
+  qt/cryptcore/res/img/ic-check-sync-off.png \
+  qt/cryptcore/res/img/ic-nav-privacy-active.png \
+  qt/cryptcore/res/img/img-empty-contacts.png \
+  qt/cryptcore/res/img/btn-radio-off.png \
+  qt/cryptcore/res/img/ic-check-sync.png \
+  qt/cryptcore/res/img/ic-nav-privacy-hover.png \
+  qt/cryptcore/res/img/img-empty-dark-contacts.png \
+  qt/cryptcore/res/img/ic-contact-arrow-down.png \
+  qt/cryptcore/res/img/ic-contact-arrow-down-white.png \
+  qt/cryptcore/res/img/ic-check-sync.png \
+  qt/cryptcore/res/img/ic-check-faq.png \
+  qt/cryptcore/res/img/ic-nav-privacy.png \
+  qt/cryptcore/res/img/img-empty-dark-error.png \
+  qt/cryptcore/res/img/ic-add-label.png \
+  qt/cryptcore/res/img/ic-pending.png \
+  qt/cryptcore/res/img/ic-check-theme-dark.png \
+  qt/cryptcore/res/img/ic-nav-receive-active.png \
+  qt/cryptcore/res/img/img-empty-dark-masternode.png \
+  qt/cryptcore/res/img/ic-add-liliac.png \
+  qt/cryptcore/res/img/ic-check-theme-light.png \
+  qt/cryptcore/res/img/ic-nav-receive-hover.png \
+  qt/cryptcore/res/img/img-empty-dark-multisend.png \
+  qt/cryptcore/res/img/ic-add-purple.png \
+  qt/cryptcore/res/img/ic-check-white.png \
+  qt/cryptcore/res/img/ic-nav-receive.png \
+  qt/cryptcore/res/img/img-empty-dark-peers.png \
+  qt/cryptcore/res/img/ic-add.png \
+  qt/cryptcore/res/img/ic-check.png \
+  qt/cryptcore/res/img/ic-nav-send-active.png \
+  qt/cryptcore/res/img/img-empty-dark-staking-off.png \
+  qt/cryptcore/res/img/img-empty-dark-staking-on.png \
+  qt/cryptcore/res/img/ic-address-book-grey.png \
+  qt/cryptcore/res/img/ic-chevron-left.png \
+  qt/cryptcore/res/img/ic-nav-send-hover.png \
+  qt/cryptcore/res/img/img-empty-dark-transactions.png \
+  qt/cryptcore/res/img/ic-address-book-white.png \
+  qt/cryptcore/res/img/ic-chevron-right.png \
+  qt/cryptcore/res/img/ic-nav-send.png \
+  qt/cryptcore/res/img/img-empty-error.png \
+  qt/cryptcore/res/img/ic-address-book.png \
+  qt/cryptcore/res/img/ic-clear-liliac.png \
+  qt/cryptcore/res/img/ic-nav-settings-active.png \
+  qt/cryptcore/res/img/img-empty-masternode.png \
+  qt/cryptcore/res/img/ic-address-send-white.png \
+  qt/cryptcore/res/img/ic-clear-purple.png \
+  qt/cryptcore/res/img/ic-nav-settings-hover.png \
+  qt/cryptcore/res/img/img-empty-multisend.png \
+  qt/cryptcore/res/img/ic-address-send.png \
+  qt/cryptcore/res/img/ic-close-white.png \
+  qt/cryptcore/res/img/ic-nav-settings.png \
+  qt/cryptcore/res/img/img-empty-peers.png \
+  qt/cryptcore/res/img/img-empty-privacy.png \
+  qt/cryptcore/res/img/img-empty-privacy-dark.png \
+  qt/cryptcore/res/img/ic-arrow-drop-down-white.png \
+  qt/cryptcore/res/img/ic-close.png \
+  qt/cryptcore/res/img/ic-radio-liliac-on.png \
+  qt/cryptcore/res/img/img-empty-staking-off.png \
+  qt/cryptcore/res/img/ic-arrow-drop-down.png \
+  qt/cryptcore/res/img/ic-coin-corr.png \
+  qt/cryptcore/res/img/ic-receive-off.png \
+  qt/cryptcore/res/img/img-empty-staking-on.png \
+  qt/cryptcore/res/img/ic-arrow-drop-up-white.png \
+  qt/cryptcore/res/img/ic-receive-on.png \
+  qt/cryptcore/res/img/img-empty-transactions.png \
+  qt/cryptcore/res/img/ic-arrow-drop-up.png \
+  qt/cryptcore/res/img/ic-received.png \
+  qt/cryptcore/res/img/img-logo-cryptcore.png \
+  qt/cryptcore/res/img/ic-arrow-drop-white-down.png \
+  qt/cryptcore/res/img/ic-combo-box.png \
+  qt/cryptcore/res/img/ic-send.png \
+  qt/cryptcore/res/img/img-logo-cryptcore@2x.png \
+  qt/cryptcore/res/img/ic-arrow-purple-down.png \
+  qt/cryptcore/res/img/ic-connect.png \
+  qt/cryptcore/res/img/ic-submenu-lock.png \
+  qt/cryptcore/res/img/img-logo-cryptcore@3x.png \
+  qt/cryptcore/res/img/img-logo-cryptcore.png \
+  qt/cryptcore/res/img/ic-arrow-right-white.png \
+  qt/cryptcore/res/img/ic-arrow-left-white.png \
+  qt/cryptcore/res/img/ic-arrow-left.png \
+  qt/cryptcore/res/img/ic-copy-liliac.png \
+  qt/cryptcore/res/img/ic-submenu-staking.png \
+  qt/cryptcore/res/img/img-nav-logo-cryptcore.png \
+  qt/cryptcore/res/img/ic-arrow-right.png \
+  qt/cryptcore/res/img/ic-copy.png \
+  qt/cryptcore/res/img/ic-copy-big.png \
+  qt/cryptcore/res/img/ic-copy-big-white.png \
+  qt/cryptcore/res/img/ic-submenu-unlock.png \
+  qt/cryptcore/res/img/img-nav-logo.png \
+  qt/cryptcore/res/img/ic-arrow-white-left.png \
+  qt/cryptcore/res/img/ic-exit.png \
+  qt/cryptcore/res/img/ic-switch-liliac-on.png \
+  qt/cryptcore/res/img/img-nav-logo.png \
+  qt/cryptcore/res/img/ic-arrow-white-right.png \
+  qt/cryptcore/res/img/ic-expand.png \
+  qt/cryptcore/res/img/ic-switch-off.png \
+  qt/cryptcore/res/img/img-qr-test-big.png \
+  qt/cryptcore/res/img/ic-check-active.png \
+  qt/cryptcore/res/img/ic-folder.png \
+  qt/cryptcore/res/img/ic-switch-on.png \
+  qt/cryptcore/res/img/img-qr-test.png \
+  qt/cryptcore/res/img/ic-check-box.png \
+  qt/cryptcore/res/img/ic-check-box-dark-active.png \
+  qt/cryptcore/res/img/ic-check-box-indeterminate.png \
+  qt/cryptcore/res/img/ic-check-box-liliac-indeterminate.png \
+  qt/cryptcore/res/img/ic-label-liliac.png \
+  qt/cryptcore/res/img/ic-transaction-warning.png \
+  qt/cryptcore/res/img/ic-transaction-mint.png \
+  qt/cryptcore/res/img/ic-transaction-mint-inactive.png \
+  qt/cryptcore/res/img/ic-check-cold-staking.png \
+  qt/cryptcore/res/img/ic-check-cold-staking-off.png \
+  qt/cryptcore/res/img/ic-check-cold-staking-enabled.png \
+  qt/cryptcore/res/img/dark/ic-transaction-cs-contract.png \
+  qt/cryptcore/res/img/dark/ic-transaction-cs-contract-inactive.png \
+  qt/cryptcore/res/img/img-qr.png \
+  qt/cryptcore/res/img/ic-check-connect-off.png \
+  qt/cryptcore/res/img/ic-check-tor-off.png \
+  qt/cryptcore/res/img/ic-check-tor.png \
+  qt/cryptcore/res/img/ic-label.png \
+  qt/cryptcore/res/img/ic-transaction-received.png \
+  qt/cryptcore/res/img/dark/ic-transaction-received.png \
+  qt/cryptcore/res/img/dark/ic-transaction-warning.png \
+  qt/cryptcore/res/img/dark/ic-transaction-mint.png \
+  qt/cryptcore/res/img/dark/ic-transaction-mint-inactive.png \
+  qt/cryptcore/res/img/ic-transaction-received-inactive.png \
+  qt/cryptcore/res/img/dark/ic-transaction-received-inactive.png \
+  qt/cryptcore/res/img/img-welcome-step1.png \
+  qt/cryptcore/res/img/ic-check-connect.png \
+  qt/cryptcore/res/img/ic-menu-hover.png \
+  qt/cryptcore/res/img/ic-transaction-sent.png \
+  qt/cryptcore/res/img/ic-transaction-sent-inactive.png \
+  qt/cryptcore/res/img/dark/ic-transaction-sent.png \
+  qt/cryptcore/res/img/dark/ic-transaction-sent-inactive.png \
+  qt/cryptcore/res/img/img-welcome-step2.png \
+  qt/cryptcore/res/img/ic-check-dark.png \
+  qt/cryptcore/res/img/ic-mint.png \
+  qt/cryptcore/res/img/ic-transaction-staked.png \
+  qt/cryptcore/res/img/ic-transaction-staked-inactive.png \
+  qt/cryptcore/res/img/dark/ic-transaction-staked.png \
+  qt/cryptcore/res/img/dark/ic-transaction-staked-inactive.png \
+  qt/cryptcore/res/img/img-welcome-step3.png \
+  qt/cryptcore/res/img/ic-check-liliac-on.png \
+  qt/cryptcore/res/img/ic-nav-address-active.png \
+  qt/cryptcore/res/img/ic-unlock-staking.png \
+  qt/cryptcore/res/img/img-welcome-step4.png \
+  qt/cryptcore/res/img/ic-check-locked-off.png \
+  qt/cryptcore/res/img/ic-nav-address-hover.png \
+  qt/cryptcore/res/img/ic-update-liliac.png \
+  qt/cryptcore/res/img/ic-arrow-drop-down-purple.png \
+  qt/cryptcore/res/img/ic-arrow-drop-up-purple.png \
+  qt/cryptcore/res/img/ic-check-liliac-indeterminate.png \
+  qt/cryptcore/res/img/ic-check-box-liliac-indeterminate.png \
+  qt/cryptcore/res/img/ic-transaction-stake-delegated.png \
+  qt/cryptcore/res/img/ic-transaction-stake-delegated-inactive.png \
+  qt/cryptcore/res/img/ic-transaction-stake-hot.png \
+  qt/cryptcore/res/img/ic-transaction-stake-hot-inactive.png \
+  qt/cryptcore/res/img/dark/ic-transaction-stake-hot.png \
+  qt/cryptcore/res/img/dark/ic-transaction-stake-hot-inactive.png \
+  qt/cryptcore/res/img/dark/ic-transaction-stake-delegated.png \
+  qt/cryptcore/res/img/dark/ic-transaction-stake-delegated-inactive.png \
+  qt/cryptcore/res/img/ic-transaction-cs-contract.png \
+  qt/cryptcore/res/img/ic-transaction-cs-contract-inactive.png \
+  qt/cryptcore/res/img/ic-check-box-indeterminate.png \
+  qt/cryptcore/res/img/ani-loading-dark.gif \
+  qt/cryptcore/res/img/ani-loading.gif
+
+
+
+BITCOIN_QT_BASE_CPP = \
+  qt/bantablemodel.cpp \
+  qt/bitcoinaddressvalidator.cpp \
+  qt/cryptcore/cryptcoregui.cpp \
+  qt/bitcoinunits.cpp \
+  qt/clientmodel.cpp \
+  qt/csvmodelwriter.cpp \
+  qt/guiutil.cpp \
+  qt/intro.cpp \
+  qt/networkstyle.cpp \
+  qt/notificator.cpp \
+  qt/optionsdialog.cpp \
+  qt/optionsmodel.cpp \
+  qt/peertablemodel.cpp \
+  qt/platformstyle.cpp \
+  qt/qvalidatedlineedit.cpp \
+  qt/qvaluecombobox.cpp \
+  qt/rpcconsole.cpp \
+  qt/splashscreen.cpp \
+  qt/trafficgraphwidget.cpp \
+  qt/utilitydialog.cpp
+
+BITCOIN_QT_WINDOWS_CPP = qt/winshutdownmonitor.cpp
+
+BITCOIN_QT_WALLET_CPP = \
+  qt/addressbookpage.cpp \
+  qt/addresstablemodel.cpp \
+  qt/askpassphrasedialog.cpp \
+  qt/coincontroldialog.cpp \
+  qt/coincontroltreewidget.cpp \
+  qt/editaddressdialog.cpp \
+  qt/openuridialog.cpp \
+  qt/paymentrequestplus.cpp \
+  qt/paymentserver.cpp \
+  qt/recentrequeststablemodel.cpp \
+  qt/transactiondesc.cpp \
+  qt/transactionfilterproxy.cpp \
+  qt/transactionrecord.cpp \
+  qt/transactiontablemodel.cpp \
+  qt/walletmodel.cpp \
+  qt/walletmodeltransaction.cpp \
+  qt/cryptcore/loadingdialog.cpp \
+  qt/cryptcore/pwidget.cpp \
+  qt/cryptcore/focuseddialog.cpp \
+  qt/cryptcore/guitransactionsutils.cpp \
+  qt/cryptcore/snackbar.cpp \
+  qt/cryptcore/navmenuwidget.cpp \
+  qt/cryptcore/lockunlock.cpp \
+  qt/cryptcore/receivedialog.cpp \
+  qt/cryptcore/furabstractlistitemdelegate.cpp \
+  qt/cryptcore/txviewholder.cpp \
+  qt/cryptcore/qtutils.cpp \
+  qt/cryptcore/expandablebutton.cpp \
+  qt/cryptcore/topbar.cpp \
+  qt/cryptcore/txrow.cpp \
+  qt/cryptcore/addressholder.cpp \
+  qt/cryptcore/addressfilterproxymodel.cpp \
+  qt/cryptcore/dashboardwidget.cpp \
+  qt/cryptcore/addresslabelrow.cpp \
+  qt/cryptcore/contactdropdownrow.cpp \
+  qt/cryptcore/contactsdropdown.cpp \
+  qt/cryptcore/optionbutton.cpp \
+  qt/cryptcore/mninfodialog.cpp \
+  qt/cryptcore/coldstakingmodel.cpp \
+  qt/cryptcore/mnmodel.cpp \
+  qt/cryptcore/masternodewizarddialog.cpp \
+  qt/cryptcore/mnrow.cpp \
+  qt/cryptcore/masternodeswidget.cpp \
+  qt/cryptcore/myaddressrow.cpp \
+  qt/cryptcore/csrow.cpp \
+  qt/cryptcore/sendchangeaddressdialog.cpp \
+  qt/cryptcore/sendconfirmdialog.cpp \
+  qt/cryptcore/sendcustomfeedialog.cpp \
+  qt/cryptcore/sendchangeaddressdialog.cpp \
+  qt/cryptcore/sendmultirow.cpp \
+  qt/cryptcore/send.cpp \
+  qt/cryptcore/addnewaddressdialog.cpp \
+  qt/cryptcore/addnewcontactdialog.cpp \
+  qt/cryptcore/requestdialog.cpp \
+  qt/cryptcore/receivewidget.cpp \
+  qt/cryptcore/tooltipmenu.cpp \
+  qt/cryptcore/addresseswidget.cpp \
+  qt/cryptcore/defaultdialog.cpp \
+  qt/cryptcore/coldstakingwidget.cpp \
+  qt/cryptcore/settings/settingsbackupwallet.cpp \
+  qt/cryptcore/settings/settingsexportcsv.cpp \
+  qt/cryptcore/settings/settingsbittoolwidget.cpp \
+  qt/cryptcore/settings/settingsconsolewidget.cpp \
+  qt/cryptcore/settings/settingsdisplayoptionswidget.cpp \
+  qt/cryptcore/settings/settingsfaqwidget.cpp \
+  qt/cryptcore/settings/settingsinformationwidget.cpp \
+  qt/cryptcore/settings/settingsmainoptionswidget.cpp \
+  qt/cryptcore/settings/settingsmultisenddialog.cpp \
+  qt/cryptcore/settings/settingsmultisendwidget.cpp \
+  qt/cryptcore/settings/settingssignmessagewidgets.cpp \
+  qt/cryptcore/settings/settingswalletoptionswidget.cpp \
+  qt/cryptcore/settings/settingswalletrepairwidget.cpp \
+  qt/cryptcore/settings/settingswidget.cpp \
+  qt/cryptcore/welcomecontentwidget.cpp \
+  qt/cryptcore/splash.cpp
+
+
+BITCOIN_QT_CPP = $(BITCOIN_QT_BASE_CPP)
+if TARGET_WINDOWS
+BITCOIN_QT_CPP += $(BITCOIN_QT_WINDOWS_CPP)
+endif
+if ENABLE_WALLET
+BITCOIN_QT_CPP += $(BITCOIN_QT_WALLET_CPP)
+endif
+
+RES_IMAGES = \
+  qt/res/images/about.png \
+  qt/res/images/corr.png
+
+RES_CSS = \
+  qt/res/css/default.css \
+  qt/cryptcore/res/css/style_dark.css \
+  qt/cryptcore/res/css/style_light.css
+
+BITCOIN_RC = qt/res/cryptcore-qt-res.rc
+
+BITCOIN_QT_INCLUDES = -I$(builddir)/qt -I$(srcdir)/qt -I$(srcdir)/qt/forms \
+  -I$(builddir)/qt/forms -DQT_NO_KEYWORDS
+
+qt_libbitcoinqt_a_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(QT_DBUS_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_libbitcoinqt_a_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+qt_libbitcoinqt_a_OBJCXXFLAGS = $(AM_OBJCXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_libbitcoinqt_a_SOURCES = $(BITCOIN_QT_CPP) $(BITCOIN_QT_H) $(QT_FORMS_UI) \
+  $(QT_QRC) $(QT_QRC_LOCALE) $(QT_TS) $(PROTOBUF_PROTO) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS)
+
+nodist_qt_libbitcoinqt_a_SOURCES = $(QT_MOC_CPP) $(QT_MOC) $(PROTOBUF_CC) \
+  $(PROTOBUF_H) $(QT_QRC_CPP) $(QT_QRC_LOCALE_CPP)
+
+# forms/foo.h -> forms/ui_foo.h
+QT_FORMS_H=$(join $(dir $(QT_FORMS_UI)),$(addprefix ui_, $(notdir $(QT_FORMS_UI:.ui=.h))))
+
+# Most files will depend on the forms and moc files as includes. Generate them
+# before anything else.
+$(QT_MOC): $(QT_FORMS_H)
+$(qt_libbitcoinqt_a_OBJECTS) $(qt_cryptcore_qt_OBJECTS) : | $(QT_MOC)
+
+#Generating these with a half-written protobuf header leads to wacky results.
+#This makes sure it's done.
+$(QT_MOC): $(PROTOBUF_H)
+$(QT_MOC_CPP): $(PROTOBUF_H)
+
+# cryptcore-qt binary #
+qt_cryptcore_qt_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(BITCOIN_QT_INCLUDES) \
+  $(QT_INCLUDES) $(PROTOBUF_CFLAGS) $(QR_CFLAGS) $(SVG_CFLAGS) $(CHARTS_CFLAGS)
+qt_cryptcore_qt_CXXFLAGS = $(AM_CXXFLAGS) $(QT_PIE_FLAGS)
+
+qt_cryptcore_qt_SOURCES = qt/cryptcore.cpp
+if TARGET_DARWIN
+  qt_cryptcore_qt_SOURCES += $(BITCOIN_MM)
+endif
+if TARGET_WINDOWS
+  qt_cryptcore_qt_SOURCES += $(BITCOIN_RC)
+endif
+qt_cryptcore_qt_LDADD = qt/libbitcoinqt.a $(LIBBITCOIN_SERVER)
+if ENABLE_WALLET
+qt_cryptcore_qt_LDADD += $(LIBBITCOIN_UTIL) $(LIBBITCOIN_WALLET)
+endif
+if ENABLE_ZMQ
+qt_cryptcore_qt_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+endif
+qt_cryptcore_qt_LDADD += $(LIBBITCOIN_CLI) $(LIBBITCOIN_COMMON) $(LIBBITCOIN_UTIL) $(LIBBITCOIN_CRYPTO) $(LIBUNIVALUE) $(LIBLEVELDB) $(LIBLEVELDB_SSE42) $(LIBMEMENV) \
+  $(BOOST_LIBS) $(QT_LIBS) $(QT_DBUS_LIBS) $(QR_LIBS) $(PROTOBUF_LIBS) $(SVG_LIBS) $(CHARTS_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(LIBSECP256K1) \
+  $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+qt_cryptcore_qt_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(QT_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+qt_cryptcore_qt_LIBTOOLFLAGS = $(AM_LIBTOOLFLAGS) --tag CXX
+
+#locale/foo.ts -> locale/foo.qm
+QT_QM=$(QT_TS:.ts=.qm)
+
+SECONDARY: $(QT_QM)
+
+$(srcdir)/qt/cryptcorestrings.cpp: $(libbitcoin_server_a_SOURCES) $(libbitcoin_wallet_a_SOURCES) $(libbitcoin_common_a_SOURCES) $(libbitcoin_zmq_a_SOURCES) $(libbitcoin_util_a_SOURCES)
+	@test -n $(XGETTEXT) || echo "xgettext is required for updating translations"
+	$(AM_V_GEN) cd $(srcdir); XGETTEXT=$(XGETTEXT) PACKAGE_NAME="$(PACKAGE_NAME)" $(PYTHON) ../share/qt/extract_strings_qt.py $^
+
+translate: $(srcdir)/qt/cryptcorestrings.cpp $(QT_FORMS_UI) $(QT_FORMS_UI) $(BITCOIN_QT_BASE_CPP) qt/cryptcore.cpp $(BITCOIN_QT_WINDOWS_CPP) $(BITCOIN_QT_WALLET_CPP) $(BITCOIN_QT_H) $(BITCOIN_MM)
+	@test -n $(LUPDATE) || echo "lupdate is required for updating translations"
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LUPDATE) $^ -locations relative -no-obsolete -ts $(srcdir)/qt/locale/cryptcore_en.ts
+
+$(QT_QRC_LOCALE_CPP): $(QT_QRC_LOCALE) $(QT_QM)
+	@test -f $(RCC)
+	@cp -f $< $(@D)/temp_$(<F)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name cryptcore_locale $(@D)/temp_$(<F) | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+	@rm $(@D)/temp_$(<F)
+
+$(QT_QRC_CPP): $(QT_QRC) $(QT_FORMS_H) $(RES_ICONS) $(RES_IMAGES) $(RES_CSS) $(PROTOBUF_H)
+	@test -f $(RCC)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(RCC) -name cryptcore $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+CLEAN_QT = $(nodist_qt_libbitcoinqt_a_SOURCES) $(QT_QM) $(QT_FORMS_H) qt/*.gcda qt/*.gcno qt/temp_cryptcore_locale.qrc
+
+CLEANFILES += $(CLEAN_QT)
+
+cryptcore_qt_clean: FORCE
+	rm -f $(CLEAN_QT) $(qt_libbitcoinqt_a_OBJECTS) $(qt_cryptcore_qt_OBJECTS) qt/cryptcore-qt$(EXEEXT) $(LIBBITCOINQT)
+
+cryptcore_qt : qt/cryptcore-qt$(EXEEXT)
+
+ui_%.h: %.ui
+	@test -f $(UIC)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(UIC) -o $@ $< || (echo "Error creating $@"; false)
+
+%.moc: %.cpp
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+moc_%.cpp: %.h
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(MOC) $(DEFAULT_INCLUDES) $(QT_INCLUDES) $(MOC_DEFS) $< | \
+	  $(SED) -e '/^\*\*.*Created:/d' -e '/^\*\*.*by:/d' > $@
+
+%.qm: %.ts
+	@test -f $(LRELEASE)
+	@$(MKDIR_P) $(@D)
+	$(AM_V_GEN) QT_SELECT=$(QT_SELECT) $(LRELEASE) -silent $< -qm $@

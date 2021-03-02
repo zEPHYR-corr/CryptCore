@@ -1,0 +1,13 @@
+[Desktop Entry]
+Version=1.0
+Name=Cryptcore
+Comment=Cryptcore P2P Cryptocurrency
+Comment[fr]=Cryptcore, monnaie virtuelle cryptographique pair à pair
+Comment[tr]=Cryptcore, eşten eşe kriptografik sanal para birimi
+Exec=cryptcore-qt %u
+Terminal=false
+Type=Application
+Icon=cryptcore128
+MimeType=x-scheme-handler/cryptcore;
+Categories=Office;Finance;
+StartupWMClass=Cryptcore-qt

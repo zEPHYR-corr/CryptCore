@@ -1,0 +1,3 @@
+usr/local/bin/cryptcored usr/bin
+usr/local/bin/cryptcore-cli usr/bin
+debian/examples/cryptcore.conf etc/cryptcore
