@@ -5842,8 +5842,8 @@ Cryptcore Wallet</translation>
         <translation>Debes especificar un masternodeprivkey en la configuración. Por favor mira la documentación por ayuda.</translation>
     </message>
     <message>
-        <source>(17015 could be used only on mainnet)</source>
-        <translation>(17015 puede ser utilizado solo en mainnet)</translation>
+        <source>(17087 could be used only on mainnet)</source>
+        <translation>(17087 puede ser utilizado solo en mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -5854,8 +5854,8 @@ Cryptcore Wallet</translation>
         <translation>(predeterminado: 1)</translation>
     </message>
     <message>
-        <source>(must be 17015 for mainnet)</source>
-        <translation>(debe ser 17015 para un mainnet)</translation>
+        <source>(must be 17087 for mainnet)</source>
+        <translation>(debe ser 17087 para un mainnet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

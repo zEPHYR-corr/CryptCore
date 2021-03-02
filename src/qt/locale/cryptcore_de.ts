@@ -6004,8 +6004,8 @@ Cryptcore Wallet</source>
         <translation>Sie müssen einen privaten Masternode-Schlüssel in der Konfiguration festlegen. Bitte nutzen Sie die Dokumentation zwecks Hilfe.</translation>
     </message>
     <message>
-        <source>(17015 could be used only on mainnet)</source>
-        <translation>(17015 kann nur im Mainnet verwendet werden)</translation>
+        <source>(17087 could be used only on mainnet)</source>
+        <translation>(17087 kann nur im Mainnet verwendet werden)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -6016,8 +6016,8 @@ Cryptcore Wallet</source>
         <translation>(default: 1)</translation>
     </message>
     <message>
-        <source>(must be 17015 for mainnet)</source>
-        <translation>(muss im Mainnet 17015 sein)</translation>
+        <source>(must be 17087 for mainnet)</source>
+        <translation>(muss im Mainnet 17087 sein)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

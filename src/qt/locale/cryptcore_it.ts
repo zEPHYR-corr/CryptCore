@@ -5593,8 +5593,8 @@ Portafoglio Cryptcore.</translation>
         <translation>È necessario specificare una chiave masternodepriv nella configurazione. Consultare la documentazione per assistenza.</translation>
     </message>
     <message>
-        <source>(17015 could be used only on mainnet)</source>
-        <translation>(17015 potrebbe essere utilizzato solo su mainnet)</translation>
+        <source>(17087 could be used only on mainnet)</source>
+        <translation>(17087 potrebbe essere utilizzato solo su mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -5605,8 +5605,8 @@ Portafoglio Cryptcore.</translation>
         <translation>(default: 1)</translation>
     </message>
     <message>
-        <source>(must be 17015 for mainnet)</source>
-        <translation>(deve essere 17015 per mainnet)</translation>
+        <source>(must be 17087 for mainnet)</source>
+        <translation>(deve essere 17087 per mainnet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

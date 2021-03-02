@@ -6352,8 +6352,8 @@ Cryptcore Portemonnee</translation>
         <translation>Je moet een masternodeprivkey opgeven in de configuratie. Raadpleeg de documentatie voor hulp.</translation>
     </message>
     <message>
-        <source>(17015 could be used only on mainnet)</source>
-        <translation>(17015 kan alleen op mainnet worden gebruikt)</translation>
+        <source>(17087 could be used only on mainnet)</source>
+        <translation>(17087 kan alleen op mainnet worden gebruikt)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -6364,8 +6364,8 @@ Cryptcore Portemonnee</translation>
         <translation>(standaard: 1)</translation>
     </message>
     <message>
-        <source>(must be 17015 for mainnet)</source>
-        <translation>(moet 17015 voor mainnet zijn)</translation>
+        <source>(must be 17087 for mainnet)</source>
+        <translation>(moet 17087 voor mainnet zijn)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

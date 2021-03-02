@@ -6313,8 +6313,8 @@ Cryptcore核心钱包</translation>
         <translation>您必须在配置中指定一个主节点privkey。有关帮助，请参阅文档。</translation>
     </message>
     <message>
-        <source>(17015 could be used only on mainnet)</source>
-        <translation>(17015只可在网上使用)</translation>
+        <source>(17087 could be used only on mainnet)</source>
+        <translation>(17087只可在网上使用)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -6325,8 +6325,8 @@ Cryptcore核心钱包</translation>
         <translation>(默认: 1)</translation>
     </message>
     <message>
-        <source>(must be 17015 for mainnet)</source>
-        <translation>(主网必须为17015)</translation>
+        <source>(must be 17087 for mainnet)</source>
+        <translation>(主网必须为17087)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

@@ -47,11 +47,11 @@ versions of Tor see [Section 3](#3-automatically-listen-on-tor).*
 
 	HiddenServiceDir /var/lib/tor/cryptcore-service/
 	HiddenServiceVersion 2
-	HiddenServicePort 17015 127.0.0.1:17015
+	HiddenServicePort 17087 127.0.0.1:17087
 	HiddenServicePort 61472 127.0.0.1:61472
 
 The directory can be different of course, but (both) port numbers should be equal to
-your cryptcored's P2P listen port (17015 by default).
+your cryptcored's P2P listen port (17087 by default).
 
 	-externalip=X   You can tell cryptcore about its publicly reachable address using
 	                this option, and this can be a v2 .onion address (v3 .onion
@@ -87,7 +87,7 @@ as well, use `discover` instead:
 
 	./cryptcored ... -discover
 
-and open port 17015 on your firewall (or use -upnp).
+and open port 17087 on your firewall (or use -upnp).
 
 If you only want to use Tor to reach .onion addresses, but not use it as a proxy
 for normal IPv4/IPv6 communication, use:

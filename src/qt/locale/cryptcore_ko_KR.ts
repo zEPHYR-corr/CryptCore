@@ -5648,8 +5648,8 @@ Cryptcore Wallet</translation>
         <translation>환경설정에서 masternodeprivkey를 지정해야 합니다. 도움말을 참조하십시오.</translation>
     </message>
     <message>
-        <source>(17015 could be used only on mainnet)</source>
-        <translation>(17015 은 메인넷에서만 사용될 수 있습니다)</translation>
+        <source>(17087 could be used only on mainnet)</source>
+        <translation>(17087 은 메인넷에서만 사용될 수 있습니다)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -5660,8 +5660,8 @@ Cryptcore Wallet</translation>
         <translation>(기본값: 1)</translation>
     </message>
     <message>
-        <source>(must be 17015 for mainnet)</source>
-        <translation>(메인넷 일경우 17015)</translation>
+        <source>(must be 17087 for mainnet)</source>
+        <translation>(메인넷 일경우 17087)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

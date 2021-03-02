@@ -50,7 +50,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "Gab, Refuge for the Deplatformed, Hacked for ‘Pretty Much Everything’ Including Trump Data - COINDESK MARCH 1, 2021";
+    const char* pszTimestamp = "Grayscale Bitcoin Premium Flips Negative as BTC Stays Below $50,000 - COINDESK MARCH 3, 2021";
     const CScript genesisOutputScript = CScript() << ParseHex("04c10e83b2703ccf322f7dba62dd5855ac4c10bd015814ce121ba3260b2573b8810c02c0582aed05b4deb9c4b77b26d92428c61256cd44774babea0c073b2ed0c9") << OP_CHECKSIG;
     return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
 }
@@ -67,12 +67,12 @@ static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits
  */
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256S("00000ac5528b203fb38c503be3e6eded2962402a1c73b6528d81d224a8b672a3"))
+    (0, uint256S("0x0"))
     ;
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1614614241, // * UNIX timestamp of last checkpoint block
+    0, // * UNIX timestamp of last checkpoint block
     0,    // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     1440        // * estimated number of transactions per day after checkpoint
@@ -105,7 +105,48 @@ public:
         networkID = CBaseChainParams::MAIN;
         strNetworkID = "main";
 
-        genesis = CreateGenesisBlock(1614614241, 590783, 0x1e0ffff0, 1, 0 * COIN);
+        uint32_t nGenesisTime = 1614728933; // 2021-02-03T13:51:41+00:00
+
+                  arith_uint256 test;
+                  bool fNegative;
+                  bool fOverflow;
+                  test.SetCompact(0x1e0ffff0, &fNegative, &fOverflow);
+                  std::cout << "Test threshold: " << test.GetHex() << "\n\n";
+
+                  int genesisNonce = 0;
+                  uint256 TempHashHolding = uint256S("0x0000000000000000000000000000000000000000000000000000000000000000");
+                  uint256 BestBlockHash = uint256S("0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+                  for (int i=0;i<40000000;i++) {
+                      genesis = CreateGenesisBlock(nGenesisTime, i, 0x1e0ffff0, 1, 0 * COIN);
+                      //genesis.hashPrevBlock = TempHashHolding;
+                      consensus.hashGenesisBlock = genesis.GetHash();
+
+                      arith_uint256 BestBlockHashArith = UintToArith256(BestBlockHash);
+                      if (UintToArith256(consensus.hashGenesisBlock) < BestBlockHashArith) {
+                          BestBlockHash = consensus.hashGenesisBlock;
+                          std::cout << BestBlockHash.GetHex() << " Nonce: " << i << "\n";
+                          std::cout << "   PrevBlockHash: " << genesis.hashPrevBlock.GetHex() << "\n";
+                      }
+
+                      TempHashHolding = consensus.hashGenesisBlock;
+
+                      if (BestBlockHashArith < test) {
+                          genesisNonce = i - 1;
+                          break;
+                      }
+                      //std::cout << consensus.hashGenesisBlock.GetHex() << "\n";
+                  }
+                   std::cout << "\n";
+                   std::cout << "\n";
+                   std::cout << "\n";
+
+                   std::cout << "hashGenesisBlock to 0x" << BestBlockHash.GetHex() << std::endl;
+                   std::cout << "Genesis Nonce to " << genesisNonce << std::endl;
+                   std::cout << "Genesis Merkle 0x" << genesis.hashMerkleRoot.GetHex() << std::endl;
+
+                 exit(0);
+
+        genesis = CreateGenesisBlock(1614728933, 590783, 0x1e0ffff0, 1, 0 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
         assert(consensus.hashGenesisBlock == uint256S("0x00000ac5528b203fb38c503be3e6eded2962402a1c73b6528d81d224a8b672a3"));
         assert(genesis.hashMerkleRoot == uint256S("0x35ea751d158eec80455829ec3b6aa48d6ebbfbdd01d3cce4f7fe4d1bc75a5b1c"));
@@ -131,10 +172,10 @@ public:
         consensus.nTimeSlotLength = 15;
 
         // spork keys
-        consensus.strSporkPubKey = "0420DE0EEB26B1917F7BCFF42F96D78905E88AD972668C5C6A68D602D2CAEE2337C7F49C8FAE59CF246C3077B17F41DC9FDBF7B5B0D4DED949BD96D63543186C3F";
-        consensus.strSporkPubKeyOld = "04D64D2442D72B7FF2705F4CC474A66527102219ED51AB7764D8791D30F5F962AFC6F1AF763AD1008625434FD7597B23533AE803C4BDA497C86941B5DFAD1D3AF9";
-        consensus.nTime_EnforceNewSporkKey = 1614611457;    //!> Monday, March 1, 2021 3:10:57 PM
-        consensus.nTime_RejectOldSporkKey = 1614611457;     //!> Monday, March 1, 2021 3:10:57 PM
+        consensus.strSporkPubKey = "043922895DDE60091410FFB0D5721668E2E70EE71ACD22D8566334B4C21A53257511A47F7DF2647DEA0BAC21B8DF90C9E14EC875B1DCBBF58DB3A18ACA17A055A8";
+        consensus.strSporkPubKeyOld = "0420DE0EEB26B1917F7BCFF42F96D78905E88AD972668C5C6A68D602D2CAEE2337C7F49C8FAE59CF246C3077B17F41DC9FDBF7B5B0D4DED949BD96D63543186C3F";
+        consensus.nTime_EnforceNewSporkKey = 1614726517;    //!> Wednesday, March 3, 2021 12:08:37 AM GMT+01:00
+        consensus.nTime_RejectOldSporkKey = 1614726517;     //!> Wednesday, March 3, 2021 12:08:37 AM GMT+01:00
 
         // height-based activations
         consensus.height_last_PoW = 200;
@@ -157,11 +198,11 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0x92;
-        pchMessageStart[1] = 0x48;
-        pchMessageStart[2] = 0x17;
-        pchMessageStart[3] = 0xcd;
-        nDefaultPort = 17015; //17015
+        pchMessageStart[0] = 0x21;
+        pchMessageStart[1] = 0x01;
+        pchMessageStart[2] = 0x15;
+        pchMessageStart[3] = 0xb9;
+        nDefaultPort = 17087; //17087
 
         // Note that of those with the service bits flag, most only support a subset of possible options
 

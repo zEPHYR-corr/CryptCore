@@ -6332,8 +6332,8 @@ Portefeuille Cryptcore</translation>
         <translation>Vous devez spécifier une masternodeprivkey dans la configuration. Veuillez consulter la documentation pour obtenir de l'aide.</translation>
     </message>
     <message>
-        <source>(17015 could be used only on mainnet)</source>
-        <translation>(17015 ne peut être utilisé que pour le mainnet)</translation>
+        <source>(17087 could be used only on mainnet)</source>
+        <translation>(17087 ne peut être utilisé que pour le mainnet)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -6344,8 +6344,8 @@ Portefeuille Cryptcore</translation>
         <translation>(default: 1)</translation>
     </message>
     <message>
-        <source>(must be 17015 for mainnet)</source>
-        <translation>(doit être 17015 pour le mainnet)</translation>
+        <source>(must be 17087 for mainnet)</source>
+        <translation>(doit être 17087 pour le mainnet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

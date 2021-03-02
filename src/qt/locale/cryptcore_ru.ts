@@ -6163,8 +6163,8 @@ Cryptcore Wallet</source>
         <translation>Вы должны указать в  строке приложенный ключ. Пожалуйста, обратитесь к документации для получения справки</translation>
     </message>
     <message>
-        <source>(17015 could be used only on mainnet)</source>
-        <translation>(17015 можно использовать только в сети)</translation>
+        <source>(17087 could be used only on mainnet)</source>
+        <translation>(17087 можно использовать только в сети)</translation>
     </message>
     <message>
         <source>(default: %s)</source>
@@ -6175,8 +6175,8 @@ Cryptcore Wallet</source>
         <translation>(неуплата: 1)</translation>
     </message>
     <message>
-        <source>(must be 17015 for mainnet)</source>
-        <translation>(должен быть 17015 для mainet)</translation>
+        <source>(must be 17087 for mainnet)</source>
+        <translation>(должен быть 17087 для mainet)</translation>
     </message>
     <message>
         <source>Accept command line and JSON-RPC commands</source>

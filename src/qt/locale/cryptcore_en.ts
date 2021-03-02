@@ -7853,8 +7853,8 @@ Cryptcore Wallet</source>
     </message>
     <message>
         <location line="+3"/>
-        <source>(17015 could be used only on mainnet)</source>
-        <translation type="unfinished">(17015 could be used only on mainnet)</translation>
+        <source>(17087 could be used only on mainnet)</source>
+        <translation type="unfinished">(17087 could be used only on mainnet)</translation>
     </message>
     <message>
         <location line="+1"/>
@@ -7868,7 +7868,7 @@ Cryptcore Wallet</source>
     </message>
     <message>
         <location line="+1"/>
-        <source>(must be 17015 for mainnet)</source>
+        <source>(must be 17087 for mainnet)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
