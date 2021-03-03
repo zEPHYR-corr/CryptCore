@@ -59,11 +59,11 @@
 </tr>
 <tr>
 <td>RPC Port</td>
-<td>8020</td>
+<td>17088</td>
 </tr>
 <tr>
 <td>Network Port</td>
-<td>8018</td>
+<td>17087</td>
 </tr>
 </tbody>
 </table>
